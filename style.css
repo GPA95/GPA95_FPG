@@ -398,3 +398,29 @@ html[data-theme="dark"] {
 @media (max-width: 480px) {
     .theme-toggle { font-size: 0.95rem; padding: 7px; top: 12px; right: 12px; }
 }
+
+/* Error field styling */
+.error {
+    border-color: #e11e3f !important;
+    background-color: rgba(225, 30, 63, 0.05) !important;
+}
+
+/* Error message styling */
+.error-message {
+    color: #e11e3f;
+    font-size: 0.85rem;
+    margin-top: 4px;
+    margin-bottom: 8px;
+    display: block;
+    font-weight: 500;
+}
+
+/* Light theme overrides for error states */
+html[data-theme="light"] .error-message {
+    color: #e11e3f;
+}
+
+html[data-theme="light"] .error {
+    border-color: #e11e3f !important;
+    background-color: rgba(225, 30, 63, 0.08) !important;
+}
