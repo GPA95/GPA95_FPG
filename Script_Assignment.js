@@ -8,6 +8,7 @@ const A2="iVBORw0KGgoAAAANSUhEUgAAAugAAAFBCAYAAAAloVorAAAAAXNSR0IArs4c6QAAIABJRE
 function validateAssignmentForm() {
     const errors = {};
 
+    validateAssignmentType(errors);
     validateNameField(errors);
     validateEnrollmentField(errors);
     validateBranchField(errors);
@@ -18,6 +19,13 @@ function validateAssignmentForm() {
 
     displayValidationErrors(errors);
     return Object.keys(errors).length === 0;
+}
+
+function validateAssignmentType(errors) {
+    const selected = document.querySelector('#AssignmentNumber input[type="radio"]:checked');
+    if (!selected) {
+        errors.assignment = ['Please select an assignment type'];
+    }
 }
 
 function validateNameField(errors) {
@@ -55,16 +63,19 @@ function validateEnrollmentField(errors) {
 
 function validateBranchField(errors) {
     const field = document.getElementById("branch");
-    const value = field.value.trim();
-    
+    const value = field ? field.value.trim() : "";
+
     if (!value) {
         errors.branch = ["Branch name is required"];
         return;
     }
-    
-    // Check format: Should be in CAPS like "B.TECH CSE" or "B.TECH ECE"
-    if (!/^[A-Z]+[\s.]?[A-Z]{2,}$/.test(value)) {
-        errors.branch = ["Branch must be in format: B.TECH CSE (all uppercase, degree then branch)"];
+
+    // Allow uppercase branch strings with dots/spaces,
+    // e.g. B.TECH CSE, B.TECH ECE, B.TECH COMPUTER SCIENCE
+    if (!/^[A-Z]+(?:[.\s][A-Z]+)*$/.test(value)) {
+        errors.branch = [
+            "Branch must use uppercase letters, dots and spaces only (e.g. B.TECH CSE)"
+        ];
     }
 }
 
@@ -308,6 +319,12 @@ document.addEventListener("DOMContentLoaded", function () {
 // ============ EXISTING PDF GENERATION FUNCTION (UNCHANGED) ============
 
 function generatePDF() {
+    const selectedAssignment = document.querySelector('#AssignmentNumber input[type="radio"]:checked');
+    if (!selectedAssignment) {
+        return;
+    }
+    const assignmentType = selectedAssignment.value;
+    
     const name = document.getElementById("name").value;
     const roll = document.getElementById("enrollment").value;
     const branch = document.getElementById("branch").value;
