@@ -44,7 +44,9 @@
       <label for="assignment3" class="option-label">Assignment 2</label>
       </div><br />
       <label for="name">Your Name:</label>
-      <input type="text" id="name" name="name" required="" /><br /><br />
+      <input type="text" id="name" name="name" required="" pattern="[A-Za-z\s]+" />
+      <div class="error-message"></div>
+      <br /><br />
 
       <label for="enrollment">Enrollment Number:</label>
       <input
@@ -52,7 +54,8 @@
         id="enrollment"
         name="enrollment"
         required=""
-      /><br /><br />
+        pattern="\d{10}" maxlength="10" 
+      /><div class="error-message"></div><br /><br />
 
       <label for="branch">Branch Name:</label>
       <input
@@ -60,7 +63,7 @@
         id="branch"
         name="branch"
         value="B.TECH CSE"
-      /><br /><br />
+      /><div class="error-message"></div><br /><br />
 
       <label for="Year">Year:</label>
       <select id="Year" name="Year" required="">
@@ -70,7 +73,7 @@
         <option value="III">3rd</option>
         <option value="IV">4th</option>
         <option value="V">5th</option></select
-      ><br /><br />
+      ><div class="error-message"></div><br /><br />
 
       <label for="Semester">Semester:</label>
       <select id="Semester" name="Semester" required="">
@@ -84,7 +87,7 @@
         <option value="VII">7th</option>
         <option value="VIII">8th</option>
         <option value="IX">9th</option></select
-      ><br /><br />
+      ><div class="error-message"></div><br /><br />
 
       <label for="section">Section:</label>
       <select id="section" name="section" required="">
@@ -96,23 +99,29 @@
         <option value="E">E</option>
         <option value="F">F</option>
         <option value="G">G</option></select
-      ><br /><br />
+      ><div class="error-message"></div><br /><br />
 
       <label for="subjectCode">Subject Code:</label>
       <input type="text" id="subjectCode" name="subjectCode" />
+      <div class="error-message"></div>
       <br /><br />
 
       <label for="SUBJECTNAME">Subject Name:</label>
       <input type="text" id="SUBJECTNAME" name="SUBJECTNAME" />
+      <div class="error-message"></div>
       <br /><br />
 
       <label for="faculty">Faculty:</label>
-      <input type="text" id="faculty" name="faculty" required="" /><br /><br />
+      <input type="text" id="faculty" name="faculty" required="" />
+      <div class="error-message"></div>
+      <br /><br />
 
       <label for="faculty">
         Faculty Subtitle
         Eg: (Department of...) or (Assistant Professer):</label>
-      <input type="text" id="facultyDept" name="facultyDept" required="" /><br /><br />
+      <input type="text" id="facultyDept" name="facultyDept" required="" />
+      <div class="error-message"></div>
+      <br /><br />
 
         <button id="generateBtn" type="button">Generate PDF</button>
       </form>
@@ -126,6 +135,8 @@
         <a href="https://github.com/saboorium" target="_blank">Abdul Saboor</a>
         | Modified by
         <a href="https://github.com/abdul-rahman-1" target="_blank" class="highlight">Abdul Rahman</a>
+          and 
+        <a href="https://github.com/GPA95" target="_blank" class="highlight">Ammaar Ahmad Khan</a>
       </p>
       <!--<p id="pdfCounterDisplay">PDFs Generated: <span id="pdfCounter">0</span></p>!-->
     </footer>
